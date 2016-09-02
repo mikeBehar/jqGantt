@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" type="text/css" rel="stylesheet">
+		<link href="css/impromptu/impromptu.css" type="text/css" rel="stylesheet">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet" type="text/css">
         <style type="text/css">
             body {
@@ -46,22 +47,22 @@
                 <small>&mdash; Draw Gantt charts with the famous jQuery ease of development</small>
             </h1>
 
-            <h2 id="contributors">Contributors</h2>
+            <h2 id="contributors">Details</h2>
             <ul>
                 <li>
-                    <strong><a href="http://mbielanczuk.com/" target="_blank">Marek Bielańczuk</a></strong> wrote the original jQuery.Gantt plugin that this version is based off of.
+                     
                 </li>
                 <li>
-                    <strong><a href="http://taitbrown.com/" target="_blank">Tait Brown</a></strong> enforced stricter code guidelines by validating the code, updating it to support HTML5 and tweaking the design.
+                     
                 </li>
                 <li>
-                    <strong><a href="mailto:leo.pfeifenberger%40googlemail.com">Leo Pfeifenberger</a></strong> made <em>major</em> performance updates as well as adding requested features such as click events, state persisting via cookies and scrollToToday on load functionality.
+                    
                 </li>
                 <li>
-                    <strong><a href="mailto:grzegorz.russek%40gmail.com">Grzegorz Russek</a></strong> helped fix the White Whale of a bug that prevented the hour view rendering correctly. Nice one.
+                    
                 </li>
                 <li>
-                <strong><a href="https://github.com/taitems/jQuery.Gantt/graphs/contributors" target="_blank">Many more from the GitHub community</a></strong>
+                 
                 </li>
             </ul>
 
@@ -81,14 +82,14 @@
 <pre class="prettyprint lang-js">
 $(".selector").gantt({
     source: "ajax/data.json",
-    scale: "weeks",
+    scale: "days",
     minScale: "weeks",
     maxScale: "months",
     onItemClick: function(data) {
-        alert("Item clicked - show some details");
+        console.log("Item clicked - show some details");
     },
     onAddClick: function(dt, rowId) {
-        alert("Empty space clicked - add an item!");
+        console.log("Empty space clicked - add an item!");
     },
     onRender: function() {
         console.log("chart rendered");
@@ -477,6 +478,7 @@ values: [
     <script src="js/jquery.fn.gantt.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+	<script src="js/jquery-impromptu-6.2.3.js"></script>
     <script>
         $(function() {
 
@@ -562,16 +564,16 @@ values: [
                     }]
                 }],
                 navigate: "scroll",
-                scale: "weeks",
+                scale: "days",
                 maxScale: "months",
-                minScale: "hours",
+                minScale: "weeks",
                 itemsPerPage: 10,
                 useCookie: true,
                 onItemClick: function(data) {
-                    alert("Item clicked - show some details");
+                    console.log("Item clicked - show some details");
                 },
                 onAddClick: function(dt, rowId) {
-                    alert("Empty space clicked - add an item!");
+                    console.log("Empty space clicked - add an item!");
                 },
                 onRender: function() {
                     if (window.console && typeof console.log === "function") {
@@ -592,5 +594,26 @@ values: [
         });
     </script>
 
+	 <script>
+	$('body').on('click', function () {
+		var msg = "  Enter a date in the format:<br> <br>day/month/year e.g., <br><br> 11/02/2011 &nbsp &nbsp or &nbsp &nbspNov 2, 2011 <br><br>New Date:&nbsp &nbsp <input id='dateToAdd' name='dateToAdd' value=''</input>  ";
+		$.prompt(msg, {
+			
+			submit: function(e,v,m,f){
+				//skipLog || console.log(  "@828  e m, f values: ", e,m,f,v );
+				respondToPrompt(v,m,f)
+				}, 
+			show: 'slideDown',
+			buttons: {'OK': true, 'Cancel': false}
+		});
+		
+	});
+function respondToPrompt(v,m,f) {
+	console.log("respond to prompt -- do stuff:" , respondToPrompt);
+}
+
+	 </script>
+	
+	
     </body>
 </html>
